@@ -1,0 +1,134 @@
+vlsmcalc.vercel.app
+
+128 64 32 16 8 4 2 1
+
+MASZK			kiosztható ip címek
+255.255.255.0 	/24	256
+255.255.255.128	/25	128
+255.255.255.192	/26	64
+255.255.255.224	/27	32
+255.255.255.240	/28	16
+255.255.255.248	/29	8
+255.255.255.252	/30	4 (2cím 2 gép)
+255.255.255.254	/31	2
+
+router konfigurálása:
+en (enable)
+show running-config (sh run)
+conf t (configure terminal)
+hostname ROUTER NEVE
+banner motd #MESSAGE OF THE DAY#
+line consol 0
+password JELSZÓ
+login (mentés)
+service password-encryption (jelszavak titkosítása)
+enable secret JELSZÓ
+do show running
+
+line vty 11 15
+transport input none (portok tiltása)
+do copy run sta (do copy running-config startup-config) (beállítások véglegesítése)
+(add laptop with console cabel)
+
+SSH config:
+ip domain-name NÉV:LAN
+crypto key generate rsa
+username ADMIN secret JELSZÓ
+line vty 0 4
+login local
+transport input ssh
+exit
+do copy run sta
+do sh ip ssh
+ip ssh version 2
+do sh ip ssh
+do copy run sta
+
+do sh ip int brief (listázás)
+int g0/0
+ip address 192.168.30.242 255.255.255.252
+no shut
+do copy run sta
+
+Command promtban:
+ping 192.168.10.1
+
+router kikapcs, HWIC-2T slot hozzáadása
+
+routingtable conf:
+do sh ip route
+exit
+ip route CÉLÁLLOMÁS MASZK INTERFACE
+ip route CÉLÁLLOMÁS MASZK INTERFACE
+
+DHCP server:
+ip dhcp excluded-address 172.16.0.1 172.16.0.10 (első 10 ip cím kizárása)
+ip dhcp pool NÉV
+network 172.16.0.0 255.255.255.0
+dns-server 8.8.8.8
+default-router 172.16.0.1 (default gateway címe)
+do copy run sta
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>ser8</title>
+</head>
+<body>
+
+kép , ha nem jelenik meg TS logo feliratot ír ki és akkor is ha az egerrel rá mutatunk:
+<div id="content">
+<img id="picture" src="typscriptlogo.png" title="TS logo" alt="TS logo">
+
+<div class="frame">
+</div>
+	
+<span>szó</span>
+cssben:
+span{
+	color: #087AC8;
+	}
+
+felsorolás:
+<ui><li></li></ui>
+
+link beillesztése és új oldalon nyílik meg
+	<h1> szöveg <a href="weboldal címe" target="_blank">katt ide</a></h1>
+
+<table class="table-hover">
+<tr> <th></th></tr>
+<tr> <td></td></tr>
+</table>
+
+<body style="color:green; font-size:0,5cm;">
+<body bgcolor="black">
+body{
+	color:red;
+	font-size: 72 pt;
+	}
+	
+<hr>margót,vonalat rak
+<dl>beljebb húzza<dt></dt><dd></dd></dl>
+<br>sortörés
+<u>aláhúz</u>
+<i>italic,dőlt</i>
+<em>dőlt</em>
+<b>félkövér</b>
+<strong>vastag</strong>
+<q>idézőjelbe tesz</q>
+<sup>felsőindex</sup>
+<sub>alsó index</sub>
+<mark>kijelölés sárgával</mark>
+<s>áthúzza</s>
+<blockquote>behúzza a szöveget</blockquote>
+	
+<p>
+<p align="right">
+</p>
+<p></p>
+<p></p>
+</body>
+
+</html>
