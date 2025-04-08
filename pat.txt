@@ -1,0 +1,55 @@
+
+line consol 0
+password JELSZÓ
+login (mentés)
+service password-encryption (jelszavak titkosítása)
+enable secret JELSZÓ
+do show running
+
+ip domain-name NÉV:LAN
+crypto key generate rsa
+username ADMIN secret JELSZÓ
+line vty 0 4
+login local
+transport input ssh
+exit
+do copy run sta
+do sh ip ssh
+ip ssh version 2
+do sh ip ssh
+do copy run sta
+
+do sh ip int brief (listázás)
+int g0/0
+ip address 192.168.30.242 255.255.255.252
+no shut
+do copy run sta
+
+Command promtban:
+ping 192.168.10.1
+
+router kikapcs, HWIC-2T slot hozzáadása
+
+routingtable conf:
+do sh ip route
+exit
+ip route CÉLÁLLOMÁS MASZK INTERFACE
+
+
+DHCP server:
+ip dhcp excluded-address 172.16.0.1 172.16.0.10 (első 10 ip cím kizárása)
+ip dhcp pool NÉV
+network 172.16.0.0 255.255.255.0
+dns-server 8.8.8.8
+default-router 172.16.0.1 (default gateway címe)
+do copy run sta
+
+desctopban: web browse url:beírni a böngészőbe 192.168.0.1
+SETUPstatic IP internet ip add:10.0.0.2
+maszk getaway dns
+WIRELESS basic wireless settings
+networkname...save
+wireless security security mode WPA2 personal
+encryption AES passhrase..
+ADMINISTRATION jelszo
+autorization name… password..
