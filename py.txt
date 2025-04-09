@@ -1,4 +1,387 @@
 
+„”””szöveg
+„”””
+print(__doc__)
+file=open("allatkert.csv","r", encoding="utf8")
+sor=file.readline()
+print(sor.strip())
+sor=file.readline()
+print(sor.strip())
+sor=file.readline()
+print(sor.strip())  #strip:felesleges sorközöket kiszedi
+file.close()    #3sort kiír a beolvasott fájlból
+file=open("allatkert.csv","r", encoding="utf8")
+for sor in file:
+    print(sor.strip)           
+file.close()  #kiírja az összes sort
+__________________________________
+file=open("allatkert.csv","r", encoding="utf8")
+
+sor=file.readline()
+while sor:
+    print(sor.strip())
+    sor=file.readline()            
+file.close()  #kiírja az összes sort
+________________________________________
+with open("allatkert.csv","r", encoding="utf8") as file
+	for sor in file:
+		print(sor.strip()) #kiírja az összes sort
+_________________________________________-
+
+
+\n sortörés
+import random
+def lista(n, min, max):
+    return [random.randint(min, max) for i in range(n)]
+def main():
+    n = int(input("Hány számot szeretnél generálni? "))
+    min = 1
+    max = 100    
+    szamok= lista(n, min, max)    
+    print(f"A generált számok 1 és 100 között: {szamok}")
+main()
+import random
+
+def lista(min, max, n):
+    return [random.randint(min, max) for i in range(n)]
+
+def main():
+    n = int(input("Hány számot szeretnél generálni? "))
+    min = 1
+    max = 100
+    
+    szamok = lista(min, max, n)
+    
+    print(f"A generált számok 1 és 100 között: {szamok}")
+    
+    print("A négyzetszámok, melyek négyzete kisebb, mint 5000:")
+    for szam in szamok:
+        if szam ** 2 < 5000:
+            print(f"A szám: {szam}, négyzete: {szam ** 2}")
+
+main()
+#allatok létszáma:
+def read():
+    file=open("allatkert.csv","r",encoding="utf8")
+
+    file.readline()
+    row=file.readline()
+    print(row)
+
+    counter=0
+    while(row):
+        counter+=1
+        row=file.readline()
+    print("allatok létszáma:", counter)
+
+read()
+__________________________-
+#kiírja a 0. elemet, neveket
+def read():
+    file=open("allatkert.csv","r",encoding="utf8")
+
+    file.readline()
+    row=file.readline()
+    print(row)
+
+    
+    while(row):
+        
+        rowSp=row.split(",")
+        print(rowSp[0])
+        row=file.readline()
+       
+
+read()
+___________________
+allat.pyben:
+class Animal:
+    def __init__(self,name, mother, city, address, salary, born, bonus):
+
+        self.nev=nev
+        self.type=type
+        self.db=db
+        self.food=food
+        self.napi=napi
+allatkert.pyben:
+
+
+
+
+
+
+
+
+_______________________________________________
+employee.py-ben:
+
+class Employee:
+
+    def __init__(self,name,mother,city,address,salary,born,bonus):
+        self.name=name
+        self.mother=mother
+        self.city=city
+        self.address=address
+        self.salary=salary
+        self.born=born
+        self.bonus=bonus
+
+filereader.pyben:
+from employee import Employee
+
+class FileReader:
+    def __init__(self):
+        pass
+    def reading(self):
+
+        empList=[]
+        file=open("employee.txt", "r", encoding="utf8")
+
+        file.readline()
+        row=file.readline()
+
+        while(row):
+
+            rowSp=row.split(":")
+            emp=employee(rowSp[0],rowSp[1], rowSp[2],rowSp[3],rowSp[4],rowSp[5],rowSp[6])
+            empList.append(emp)
+
+            row=file.readline()
+        return empList
+
+osztaly01.py-ben:
+class Worker:
+
+##def__init__(self):
+##        self.name="Pista"
+##        self.role="Mérnök"
+
+
+##   def __init__(self,name,role):
+##        self.name=name
+##        self.role=role
+
+    def __init__(self):
+        self.name=""
+        self.role=""
+        
+    def getName(self):
+        return self.name
+
+    def setName(self, name):
+        self.name=name
+
+    def getRole(self):
+        return self.role
+
+    def setRole(self, role):
+        self.role=role
+
+class Hr:
+
+    pek=Worker()
+    pek.setName("Pista")
+    pek.setRole("Pék")
+
+    print(pek.getName())
+    print(pek.getRole())
+
+Hr()
+
+worker.py
+def read():
+
+    print("1. Feladat: Fajl beolvasasa")
+    workerlist = []
+    file=open("dolgozok100.txt","r",encoding="utf8")
+    
+    file.readline()
+    row=file.readline()
+
+    while(row):
+        rowSp = row.split(":")
+        workerlist.append(rowSp)
+        row=file.readline()
+
+    print("Sikeres beolvasas")    
+    return workerlist
+
+def salaries():
+    
+    workerlist=read()#salaries fuggveny hivja meg a read fuggvenyt az altala adott eredmenye miatt
+    print("2. Feladat: fizetesek osszegzese")
+    
+    sumSalary = 0
+    for worker in workerlist:
+        salary = float(worker[3])
+        sumSalary+=salary
+
+    print("A dolgozok fizetese osszesen:",sumSalary)
+
+salaries()
+
+def countMiskolc():
+
+    workerlist=read()
+    print("3. Feladat: Mennyi a miskolci dolgozok letszama?")
+
+    counter=0
+    for worker in workerlist:
+        if(worker[1]=="Miskolc"):
+            counter+=1
+    
+    print("Miskolciak letszama: ",counter)
+
+countMiskolc()
+
+def sumSzegedSalary():
+
+    workerlist=read()
+    print("4. Feladat: Mennyi a szegedi dolgozok ossz fizetese?")
+
+    sumSzeged=0
+    for worker in workerlist:
+        if(worker[1]=="Szeged"):
+            sumSzeged+=float(worker[3])
+    print("Szegediek fizetese: ", sumSzeged)
+
+sumSzegedSalary()
+
+# bena megoldas:
+"""def countLajos():
+    workerlist = read()
+    print("5. Feladat: Hany Lajos nevu dolgozo van?")
+    
+    counter = 0
+    for worker in workerlist:
+        if "Lajos" in worker[0]:
+            counter += 1
+
+    print("Lajos nevu dolgozok szama:", counter)
+
+countLajos()"""
+
+#elegans megoldas:
+def countLajos():
+    workerlist = read()
+    print("5. Feladat: Hany Lajos nevu dolgozo van?")
+
+    counter = 0
+    for worker in workerlist:
+        rowSp = worker[0].split(":")
+        name = rowSp[0] 
+        name_parts = name.split(" ")
+        if "Lajos" in name_parts:
+            counter += 1
+
+    print("Lajos nevu dolgozok száma:", counter)
+
+countLajos()
+________________________________________________
+
+def read():
+
+    print("1. Feladat: Fajl beolvasasa")
+    workerlist = []
+    file=open("dolgozok100.txt","r",encoding="utf8")
+    
+    file.readline()
+    row=file.readline()
+
+    while(row):
+        rowSp = row.split(":")
+        workerlist.append(rowSp)
+        row=file.readline()
+
+    print("Sikeres beolvasas")    
+    return workerlist
+
+def salaries():
+    
+    workerlist=read()#salaries fuggveny hivja meg a read fuggvenyt az altala adott eredmenye miatt
+    print("2. Feladat: fizetesek osszegzese")
+    
+    sumSalary = 0
+    for worker in workerlist:
+        salary = float(worker[3])
+        sumSalary+=salary
+
+    print("A dolgozok fizetese osszesen:",sumSalary)
+
+salaries()
+
+def countMiskolc():
+
+    workerlist=read()
+    print("3. Feladat: Mennyi a miskolci dolgozok letszama?")
+
+    counter=0
+    for worker in workerlist:
+        if(worker[1]=="Miskolc"):
+            counter+=1
+    
+    print("Miskolciak letszama: ",counter)
+
+countMiskolc()
+
+def sumSzegedSalary():
+
+    workerlist=read()
+    print("4. Feladat: Mennyi a szegedi dolgozok ossz fizetese?")
+
+    sumSzeged=0
+    for worker in workerlist:
+        if(worker[1]=="Szeged"):
+            sumSzeged+=float(worker[3])
+    print("Szegediek fizetese: ", sumSzeged)
+
+sumSzegedSalary()
+
+# bena megoldas:
+"""def countLajos():
+    workerlist = read()
+    print("5. Feladat: Hany Lajos nevu dolgozo van?")
+    
+    counter = 0
+    for worker in workerlist:
+        if "Lajos" in worker[0]:
+            counter += 1
+
+    print("Lajos nevu dolgozok szama:", counter)
+
+countLajos()"""
+
+#elegans megoldas:
+def countLajos():
+    workerlist = read()
+    print("5. Feladat: Hany Lajos nevu dolgozo van?")
+
+    counter = 0
+    for worker in workerlist:
+        rowSp = worker[0].split(":")
+        name = rowSp[0] 
+        name_parts = name.split(" ")
+        if "Lajos" in name_parts:
+            counter += 1
+
+    print("Lajos nevu dolgozok száma:", counter)
+
+countLajos()
+
+
+def check_age(age):
+    if age >= 18:
+        return "Felnőtt"
+    else:
+        return "Kiskorú"
+age = int(input("Add meg az életkort: "))
+result = check_age(age)
+print(f"A személy: {result}")
+
+numbers = [5, 10, 15, 20, 25]  # Példa lista
+average = sum(numbers) / len(numbers)  # Átlag számítása
+print(average)  # Az átlag kiíratása
+
 while True:
     szam = int(input("Kérek egy számot: ")) 
     if szam > 100:
@@ -9,10 +392,58 @@ while True:
 
 for i in range(0,10,2):
     print (i)#0-tól 9-ig kiírja a számokat kettesével lépve
-
 a=[]
 a.append(23)
 print(a)#berakja a listába a 23-as számot
+statisztika=open("Statisztika.txt","w") #w:wite, lehet még r:read a:append-ha hozzá akarunk írni valamit
+for szam in range(1,1000):
+    db=0
+    oszto=1
+    while oszto<=szam:
+        if szam%oszto==0:
+            db+=1
+        oszto+=1
+    print(f"{szam:3}: {db:2}", file=statisztika)
+statisztika.close()
+    
+def Prim_e(szam):
+    oszto=2
+    valasz=True
+    while oszto*oszto<=szam:
+        #print(f"\n(szam) - osztó: {oszto}\n") #escape karakter: \n, new-line/Újsor, ASCII 10 kódú vevérlőkarakter
+        if szam%oszto==0:
+            #valasz=True
+            valasz=False
+            break
+        oszto+=1
+    return valasz
+primek=[]
+for szam in range(1,101):
+    if Prim_e(szam):
+        primek.append(szam)
+print(*primek,sep=", ")
+
+
+def EgeszBeolvasas(promptszoveg):
+    while True:
+        try:
+            szam=int(input(promptszoveg))
+            break
+        except:
+            pass
+    return szam
+
+a_oldal=EgeszBeolvasas("a oldal: ")#azért kellett függvény típusú alprogramként megírnunk, hogy értékadás jobb oldalán szerepelhessen
+b_oldal=EgeszBeolvasas("b oldal: ")
+c_oldal=EgeszBeolvasas("c oldal: ")
+#d_oldal=EgeszBeolvasas(also=1)#a felül definiálás miatt már nem használható, mert van új def, amiben ez nincs definiálva
+
+if a_oldal+b_oldal>c_oldal and c_oldal+b_oldal>a_oldal and a_oldal+c_oldal>b_oldal:
+    print("Lehet háromszög")
+else:
+    print("Nem lehet háromszög")
+
+
 def szamol(szo):
    
     maganhangzok = "aeiouáéíóöőúüű" 
@@ -430,7 +861,6 @@ def multiply(number): #hatvanyozas
 #    result = number*number - bena
 
 #    result=number**2 - ez is
-
     result=pow(number,6)
 
     return result
@@ -449,7 +879,6 @@ def calcCirArea(rad):
 #    print(math.pi)
 
     return result
-
 class Worker: #egy osztalyhoz mindig kell konstruktor
 
     def __init__(self): #konstruktor
@@ -473,7 +902,6 @@ class Worker: #egy osztalyhoz mindig kell konstruktor
         
         self.role=role
 
-
 class Hr:
 
     pek=Worker()
@@ -489,11 +917,26 @@ import math
 print(math.pi)
 négyzetgyök számítás:
 import math
-
 def negyzetgyok(szam):
     a = math.sqrt(szam)
     return a
-
-
 szam = int(input("szám"))
-print("A négyzetgyöke:", negyzetgyok(szam))
+print("A négyzetgyöke:", negyzetgyok(szam)) 
+
+import math
+
+def calculate_circumference(radius):
+    return 2 * math.pi * radius
+radius = float(input("Add meg a kör sugárát: "))
+circumference = calculate_circumference(radius)
+print(f"A kör kerülete: {circumference}")
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+p1 = Person("John", 36)
+
+print(p1.name)
+print(p1.age)
+
