@@ -1,3 +1,107 @@
+allat.py:
+class Animal:
+	
+	def __init__(self, name, type, count, food, quantity):
+		
+		self.name = name
+		self.type = type
+		self.count = count
+		self.food = food
+		self.quantity = quantity
+
+allatkert.py:
+from allat import Animal
+
+class Zoo:
+
+    def __init__(self):
+
+        pass
+
+
+    def getFileContent(self):
+
+        self.animalList = []
+
+        file = open("allatkert.csv", "r", encoding="utf8")
+        file.readline()  # fejléc átugrása
+        
+        row = file.readline()
+
+        while row:
+            rowSp = row.strip().split(",")
+            animal = Animal(rowSp[0], rowSp[1], rowSp[2], rowSp[3], rowSp[4])
+            self.animalList.append(animal)
+            row = file.readline()
+
+        file.close()
+
+
+    def sumEmlos(self):
+        
+        counter = 0
+        
+        for allat in self.animalList:
+            
+            if allat.type == 'Emlős':
+                    
+                    counter += 1
+        
+        print("Emlősök száma: ", counter)
+
+
+    def sumMadarakFogyasztasa(self):
+         
+        counter = 0
+
+        for allat in self.animalList:
+             
+             if allat.type == 'Madár':
+                  
+                  counter += int(allat.count) * float(allat.quantity)
+            
+        print("A madarak összes élelemfogyasztása: ", counter)
+
+
+    def husFogyasztasMinMax(self):
+         
+        maxFogy = None
+        minFogy = None
+         
+        for allat in self.animalList:
+              
+            if allat.food == 'Hús':
+                   
+                fogyasztas = int(allat.count) * float(allat.quantity)
+
+                if maxFogy is None or fogyasztas > maxFogy[0]:
+                    
+                    maxFogy = (fogyasztas, allat.name)
+
+                if minFogy is None or fogyasztas < minFogy[0]:
+
+                    minFogy = (fogyasztas, allat.name)
+              
+        file = open("husfogyasztas.txt", "w", encoding="utf8")
+        file.write("Húsfogyasztók: \n")
+        file.write(str(maxFogy[1]) + "\n")
+        file.write(str(minFogy[1]) + "\n")
+        file.close()
+
+        print("husfogyasztas.txt fájl létrejött.")
+
+   
+
+zoo = Zoo()
+
+zoo.getFileContent()
+
+zoo.sumEmlos()
+
+zoo.sumMadarakFogyasztasa()
+
+zoo.husFogyasztasMinMax()
+
 
 „”””szöveg
 „”””
